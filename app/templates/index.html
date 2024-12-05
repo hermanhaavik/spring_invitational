@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Website</title>
+</head>
+<body>
+    <h1>Welcome to the Tournament!</h1>
+    <div id="leaderboard"></div>
+
+    <script>
+        // Fetch and display leaderboard
+        fetch('/api/leaderboard')
+            .then(response => response.json())
+            .then(data => {
+                const leaderboard = document.getElementById('leaderboard');
+                leaderboard.innerHTML = '<h2>Leaderboard</h2>';
+                data.forEach(entry => {
+                    leaderboard.innerHTML += `<p>${entry.team}: ${entry.points} points</p>`;
+                });
+            });
+    </script>
+</body>
+</html>
